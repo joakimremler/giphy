@@ -6,7 +6,7 @@ The Giphy application we build while learning [Node.js](https://nodejs.org/en) a
 
 ## Setup
 * Install [Node.js](https://nodejs.org/en)
-* Get repository `git clone *********`
+* Get repository `git clone git@github.com:joakimremler/giphy.git`
 * Run npm install
 
 
