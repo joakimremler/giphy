@@ -30,8 +30,11 @@ function bootstrap () {
   //start class App
   window.app = new App();
 
-  // window.giphy = new Giphy();
-  // window.giphy.search;
+  window.giphy = new Giphy();
+  // window.giphy.search("testing");
+  console.log(window.giphy.search("testing"));
+
+
 
 
   console.log('The Giphy application has been loaded.');
