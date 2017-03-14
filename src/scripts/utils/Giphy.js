@@ -1,31 +1,52 @@
 import { GIPHY_API_KEY } from '../config';
+import queryString from 'query-string';
+
 
 export default class Giphy {
-  constructor() {
-    console.log('test2');
-    // const request = new Request('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC');
+  // constructor() {
+  //   console.log('test2');
+  //   // const request = new Request('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC');
+  // }
+
+  // search(query) {
+  //   // make a fetch AND return a JSON response as a Promise
+  //
+  //   // fetch the search url where actual search is after ?g to &api_*
+  //   fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat+joakim&api_key=dc6zaTOxFJmzC')
+  //   //convert API to json
+  //   .then(response => response.json())
+  //   //log json data
+  //   .then(json => console.log(json));
+  //
+  //
+  //
+  //   // fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat+joakim&api_key=dc6zaTOxFJmzC')
+  //
+  //
+  //
+  // };
+
+  search (query) {
+    const url = this.buildApiUrl(query);
+
+    return window.fetch(url)
+      //convert API to json
+      .then(response => response.json())
+      //catch error if an error accurs
+      .catch(error => console.error(error));
   }
 
-  search(query) {
-    // make a fetch AND return a JSON response as a Promise
+  buildApiUrl (query) {
+      // Build the search query string with the stringify method from the
+      // query-string package.
+      const search = queryString.stringify({
+        q: query,
+        api_key: GIPHY_API_KEY,
+        rating: 'g'
+      });
 
-    // fetch the search url where actual search is after ?g to &api_*
-    fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat+joakim&api_key=dc6zaTOxFJmzC')
-    //convert API to json
-    .then(response => response.json())
-    //log json data
-    .then(json => console.log(json));
-
-
-
-    // fetch('http://api.giphy.com/v1/gifs/search?q=funny+cat+joakim&api_key=dc6zaTOxFJmzC')
-
-
-
-  };
-
-
-
+      return `https://api.giphy.com/v1/gifs/search?${search}`;
+    }
 
 
 }
